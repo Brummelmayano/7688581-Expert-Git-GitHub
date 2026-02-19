@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kinshasa Gift Hub | KinCards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav>
+        <h1>Kinshasa Gift Hub</h1>
+        <span>Powered by KinCards</span>
+      </nav>
+      <div class="hero-content">
+        <h2>Plateforme fusionnée Kinshasa Gift Hub × KinCards : cartes cadeaux rapides et sécurisées.</h2>
+        <p>Paiement via M-Pesa, Orange Money, Airtel Money, PayPal ou carte crédit. Le code est envoyé par email (max 30 minutes).</p>
+        <a href="#catalog" class="cta">Commencer maintenant</a>
+      </div>
+    </header>
+
+    <main>
+      <section id="catalog" class="section">
+        <div class="section-title">
+          <h3>Nos cartes populaires</h3>
+          <p>Stock en temps réel et livraison automatique.</p>
+        </div>
+        <div class="cards-grid" id="cards-grid"></div>
+      </section>
+
+      <section class="section checkout-section" id="checkout">
+        <div class="checkout-card">
+          <h3>Finaliser l'achat</h3>
+          <p>Le code est envoyé automatiquement à votre email après confirmation du paiement.</p>
+          <form id="checkout-form">
+            <label>Nom complet
+              <input type="text" name="buyer_name" required placeholder="Ex: Grâce Kabasele" />
+            </label>
+            <label>Email
+              <input type="email" name="buyer_email" required placeholder="vous@email.com" />
+            </label>
+            <label>Carte cadeau
+              <select name="product_id" id="product-select" required>
+                <option value="">Sélectionnez une carte</option>
+              </select>
+            </label>
+            <label>Méthode de paiement
+              <select name="payment_method" id="payment-select" required>
+                <option value="">Choisissez un mode de paiement</option>
+              </select>
+            </label>
+            <button type="submit" class="cta full">Payer et recevoir mon code</button>
+          </form>
+          <div id="feedback"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
