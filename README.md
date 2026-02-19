@@ -1,66 +1,66 @@
-# Open Transport
+# Kinshasa Gift Hub × KinCards
 
-Application web pour covoiturage. 
+Application web moderne pour vendre des cartes cadeaux à Kinshasa.
 
-## Getting Started
-salut
-Ces instructions permettent d'executer une copie du projet en local sur votre poste de travail pour le développement et les tests. Référez-vous à la section "Déploiement" pour les étapes à suivre pour déployer le projet en production.
+## Fonctionnalités
+- Catalogue dynamique de cartes cadeaux.
+- Paiement simulé via M-Pesa, Orange Money, Airtel Money, PayPal et carte de crédit.
+- Mention explicite du délai de livraison: **30 minutes max**.
+- Stock des codes en SQLite.
+- Après confirmation: attribution automatique d'un code + envoi email.
 
-### Pré-requis
+## Fusion avec `kinshasa-gift-hub`
+La fusion distante automatique nécessite un accès réseau GitHub.
 
-Pour executer en local le projet Open Transport, vous devez au préalable installer :
-
+### Option A (recommandée) — merge Git direct
+```bash
+git remote add kgh https://github.com/Brummelmayano/kinshasa-gift-hub.git
+git fetch kgh
+git merge kgh/main --allow-unrelated-histories
 ```
 
-voila
-
-j'ai modifié la ligne 14
-
-
+### Option B — import des codes exportés
+1. Exporter un JSON depuis `kinshasa-gift-hub`.
+2. Importer dans cette base:
+```bash
+python scripts/merge_kinshasa_gift_hub.py --input kinshasa-gift-hub-export.json --db giftcards.db
 ```
 
-### Installation
-
-Voici les étapes à suivre pour avoir un environnement de développement et de test opérationnel :
-
-
-```
-A définir
-```
-
-
-
-## Executer les tests
-
-```
-A définir : expliquer comment executer les tests
+Format JSON attendu:
+```json
+{
+  "gift_codes": [
+    {"product_id": "netflix", "code": "NETFLIX-1234-KIN"}
+  ]
+}
 ```
 
+## Stack technique
+- Backend: Python standard library (WSGI) + SQLite.
+- Frontend: HTML/CSS/JS.
+- Tests: pytest.
 
-## Deploiement
-
-Voici les étapes à suivre pour déployer en production :
-
+## Lancer l'application
+```bash
+python app.py
 ```
-A définir
+Puis ouvrir `http://localhost:5000`.
+
+## Dépendances
+```bash
+pip install -r requirements.txt
 ```
 
-## Technologies :
+## Variables email SMTP (optionnel)
+- `MAIL_SENDER`
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_USER`
+- `SMTP_PASSWORD`
 
-* HTML5/CSS3
-* [Boostrap](https://getbootstrap.com/)
+Sans SMTP, les emails sont enregistrés dans `sent_emails.log`.
 
-## Contribution
-
-Merci de lire les fichiers :
-* [CONTRIBUTING.md](https://github.com/OpenClassrooms-Student-Center/7688581-Expert-Git-GitHub/blob/main/CONTRIBUTING.md)
-* [CODE_OF_CONDUCT.md](https://github.com/OpenClassrooms-Student-Center/7688581-Expert-Git-GitHub/blob/main/CONTRIBUTING.md) 
-
-## Auteurs
-
-* **BRUMMEL MAYANO**
-je suis là
-
-## License
-
-Ce projet est sous la licence GNU GPL V3 - voir le fichier [LICENSE](LICENSE) pour plus de détails
+## Tests
+```bash
+pytest -q
+```
